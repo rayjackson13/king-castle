@@ -5,8 +5,8 @@ export type LevelParams = {
 }
 
 export interface ILevel {
-  setup(): void;
   reset(): void;
+  resetElements(): void;
   update(deltaTime: number): void;
   draw(context: CanvasRenderingContext2D): void;
   drawDebug(context: CanvasRenderingContext2D): void;

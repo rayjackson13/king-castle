@@ -11,6 +11,7 @@ export class CollisionSystem {
   static collisions: CollisionBlock[] = [];
 
   static init = ({ data, width, height }: LevelCollisions) => {
+    this.collisions = [];
     for (let i = 0; i < height; i++) {
       for (let j = 0; j < width; j++) {
         if (data[i * width + j] === 0) continue;

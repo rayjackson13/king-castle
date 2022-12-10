@@ -1,7 +1,8 @@
+import { DoorAnimations, DoorAnimationTitle } from "../data/doorAnimations";
 import { AnimatedSprite, AnimatedSpriteParams } from "./AnimatedSprite";
 import { Hitbox } from "./Player";
 
-type CheckpointParams = AnimatedSpriteParams & {
+type CheckpointParams = Omit<AnimatedSpriteParams, 'animations' | 'animationName' | 'autoplay'> & {
   onLevelPassed: () => unknown;
 }
 
@@ -9,7 +10,12 @@ export class Checkpoint extends AnimatedSprite {
   onLevelPassed: () => unknown;
 
   constructor({ onLevelPassed, ...other }: CheckpointParams) {
-    super(other);
+    super({
+      animationName: DoorAnimationTitle.OpenDoor,
+      animations: DoorAnimations,
+      autoplay: false,
+      ...other,
+    });
     this.onLevelPassed = onLevelPassed;
   }
 
