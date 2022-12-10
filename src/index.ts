@@ -27,7 +27,6 @@ class Game {
       loadLevel: this.loadNextLevel,
     });
     this.level.reset();
-    console.log(this.level);
   };
 
   /**
