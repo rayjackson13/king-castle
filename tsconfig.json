@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "ESNext",
+    "allowJs": false,
+    "moduleResolution": "node",
+    "lib": ["DOM"]
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules/", "build/"]
+}
