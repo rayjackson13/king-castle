@@ -14,9 +14,8 @@ const fitScreen = ({ canvas, context }: CanvasInfo) => {
     size: { x: Screen.Width, y: Screen.Height },
     containerSize: { x: document.body.clientWidth, y: document.body.clientHeight }
   });
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = fitSize.x * dpr;
-  canvas.height = fitSize.y * dpr;
+  canvas.width = fitSize.x;
+  canvas.height = fitSize.y;
   const ratio = Math.min(
     document.body.clientWidth / Screen.Width,
     document.body.clientHeight / Screen.Height

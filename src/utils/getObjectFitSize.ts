@@ -29,6 +29,7 @@ export const getObjectFitSize = ({ size, containerSize }: Params): Vector2 => {
   const originalRatio = size.x / size.y;
   const containerRatio = containerSize.x / containerSize.y;
   const targetSize = getTargetSize(originalRatio, containerRatio, containerSize);
+  console.log(targetSize);
 
   return {
     x: targetSize.x,
