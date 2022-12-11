@@ -8,8 +8,6 @@ exec('git diff --name-only', function(error, stdout) {
   if (modifiedFiles.includes(filePath)) {
     console.log('yes', `git add ${filePath}`);
     // amend last commit
-    exec(`git add ${filePath}`, function(error, output) { console.log('adding'); });
-    exec(`git status`, function(error, output) { console.log(output); });
-    exec(`git commit --amend`, function (error, output) { console.log('updating'); });
+    exec(`git commit --amend -C HEAD -n ${filePath}`);
   }
 });
