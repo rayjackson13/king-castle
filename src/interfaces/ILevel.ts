@@ -1,7 +1,9 @@
+import { CanvasInfo } from "../createCanvas";
 import type { LevelName } from "../levels";
 
 export type LevelParams = {
   loadLevel: (name: LevelName) => void;
+  canvasInfo: CanvasInfo
 }
 
 export interface ILevel {

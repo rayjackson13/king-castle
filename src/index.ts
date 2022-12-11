@@ -20,6 +20,7 @@ class Game {
     context.imageSmoothingEnabled = false;
     this.level = new Levels[LevelName.Level1]({
       loadLevel: this.loadNextLevel,
+      canvasInfo: this.canvasInfo,
     });
     this.level.reset();
   };
@@ -27,6 +28,7 @@ class Game {
   static loadNextLevel = (name: LevelName) => {
     this.level = new Levels[name]({
       loadLevel: this.loadNextLevel,
+      canvasInfo: this.canvasInfo,
     });
     this.level.reset();
   };

@@ -1,3 +1,4 @@
+import { TouchControls } from './TouchControls';
 import { Player } from "../classes/Player";
 import { CollisionSystem } from '../classes/CollisionSystem';
 
@@ -8,6 +9,7 @@ import { wait } from '../utils/wait';
 import type { ILevel, LevelParams } from "../interfaces/ILevel";
 import { LevelName } from "../levels";
 import { Controls } from "./Contols";
+import { CanvasInfo } from '../createCanvas';
 
 export class Level implements ILevel {
   player: Player;
@@ -19,9 +21,11 @@ export class Level implements ILevel {
   isLevelFinished = false;
   loadLevel: LevelParams['loadLevel'];
   nextLevel: LevelName;
+  canvasInfo: CanvasInfo;
 
-  constructor({ loadLevel }: LevelParams) {
+  constructor({ loadLevel, canvasInfo }: LevelParams) {
     this.loadLevel = loadLevel;
+    this.canvasInfo = canvasInfo;
   }
 
   onComplete = async () => {
@@ -39,6 +43,7 @@ export class Level implements ILevel {
 
   resetElements = () => {
     Controls.init();
+    TouchControls.init(this.canvasInfo);
 
     this.bgOpacityTransition = new OpacityTransition();
     this.screenOpacityTransition = new OpacityTransition();
@@ -70,6 +75,7 @@ export class Level implements ILevel {
     this.door.draw(context);
     this.player.draw(context);
     this.screenOpacityTransition.draw(context);
+    TouchControls.draw(context);
   };
 
   /**
