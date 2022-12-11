@@ -11,6 +11,6 @@ exec('git diff --name-only', function(error, stdout) {
     // amend last commit
     exec(`git add ${filePath}`, function(error, output) { console.log('adding'); });
     exec(`git status`, function(error, output) { console.log(output); });
-    exec(`git commit --amend`);
+    exec(`git commit --amend`, function (error, output) { console.log('updating'); });
   }
 });
