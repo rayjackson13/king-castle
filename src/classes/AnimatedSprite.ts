@@ -28,6 +28,7 @@ export class AnimatedSprite extends Sprite {
   animations: AnimationList;
   loop: boolean;
   autoplay: boolean;
+  deltaTime: number;
 
   constructor({ position, animations, animationName, autoplay = true }: AnimatedSpriteParams) {
     super({ position, sourceURI: animations[animationName].sourceURI });
@@ -87,12 +88,20 @@ export class AnimatedSprite extends Sprite {
     this.autoplay = true;
   };
 
+  getFrameBuffer = (): number => {
+    if (!this.deltaTime) return this.frameBuffer;
+
+    const fps = 1000 / this.deltaTime;
+    return Math.round(this.frameBuffer * (fps / 60));
+  };
+
   updateFrames() {
     if (!this.autoplay) return;
 
     this.elapsedFrames++;
 
-    if (this.elapsedFrames % this.frameBuffer === 0) {
+    const fb = this.getFrameBuffer();
+    if (this.elapsedFrames % fb === 0) {
       if (this.currentFrame < this.frameCount - 1) this.currentFrame++;
       else if (this.loop) this.currentFrame = 0;
     }

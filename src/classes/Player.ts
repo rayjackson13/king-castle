@@ -26,7 +26,7 @@ export class Player extends AnimatedSprite {
   isControllable = true;
   private isTransitioning = false;
   private transitionEndPos: Vector2;
-  private speed = 0.5;
+  private speed = 0.4;
 
   constructor ({ position, size, animations, animationName }: PlayerParams) {
     super({ position, animations, animationName });
@@ -62,7 +62,7 @@ export class Player extends AnimatedSprite {
     this.velocity.x = 0;
     if (jump.pressed) {
       if (this.velocity.y === 0 && this.jumpReady) {
-        this.velocity.y = -0.8 * deltaTime;
+        this.velocity.y = -0.4 * deltaTime;
         this.jumpReady = false;
       }
     }
@@ -193,6 +193,7 @@ export class Player extends AnimatedSprite {
   };
 
   update = (deltaTime: number) => {
+    this.deltaTime = deltaTime;
     this.position.x += this.velocity.x;
     this.updateHitbox();
     this.checkHorizontalCollisions();

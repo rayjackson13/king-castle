@@ -57,7 +57,7 @@ export class Level implements ILevel {
   update = (deltaTime: number) => {
     this.bgOpacityTransition.update(deltaTime);
     this.player.update(deltaTime);
-    this.door.update(this.player.hitbox);
+    this.door.updateLogic(this.player.hitbox);
     this.screenOpacityTransition.update(deltaTime);
   };
 

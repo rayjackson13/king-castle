@@ -39,9 +39,15 @@ class Game {
   /**
    * Draws frame based on updated logic.
    */
-  private static draw = () => {
+  private static draw = (deltaTime: number) => {
     const { context } = this.canvasInfo;
     this.level.draw(context);
+
+    context.fillStyle = 'white';
+    const fps = Math.round(1000 / deltaTime);
+    context.font = '16px "Press Start 2P"';
+    context.textBaseline = 'top';
+    context.fillText(`${fps} FPS`, 5, 5);
   };
 
   /**
@@ -62,7 +68,7 @@ class Game {
     const deltaTime = timestamp - this.lastRender;
 
     this.update(deltaTime);
-    this.draw();
+    this.draw(deltaTime);
     // this.drawDebug();
 
     this.lastRender = timestamp;

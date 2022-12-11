@@ -26,7 +26,7 @@ export class Checkpoint extends AnimatedSprite {
     && player.position.y <= this.position.y + this.size.y;
   };
 
-  update = (player: Hitbox) => {
+  updateLogic = (player: Hitbox) => {
     // check collisions with player;
     if (this.hasCollision(player)) {
       this.play();
