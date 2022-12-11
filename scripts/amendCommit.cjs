@@ -1,7 +1,6 @@
-var path = require('path');
 var exec = require('child_process').exec;
 
-var filePath = path.posix.join('..', 'src', 'app.json');
+var filePath = 'src/app.json';
 
 exec('git diff --name-only', function(error, stdout) {
   var modifiedFiles = stdout.trim().split(/\r?\n/);
