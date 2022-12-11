@@ -6,7 +6,9 @@
     "target": "ESNext",
     "allowJs": false,
     "moduleResolution": "node",
-    "lib": ["DOM"]
+    "lib": ["DOM"],
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["**/*"],
   "exclude": ["node_modules/", "build/"]

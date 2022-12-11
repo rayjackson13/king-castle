@@ -89,12 +89,10 @@ export class AnimatedSprite extends Sprite {
   };
 
   getFrameBuffer = (): number => {
-    return this.frameBuffer;
+    if (!this.deltaTime) return this.frameBuffer;
 
-    // if (!this.deltaTime) return this.frameBuffer;
-
-    // const fps = 1000 / this.deltaTime;
-    // return Math.round(this.frameBuffer * (fps / 60));
+    const fps = 1000 / this.deltaTime;
+    return Math.round(this.frameBuffer * (fps / 60));
   };
 
   updateFrames() {

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Increase app version in package.json and app.json.
+node scripts/updateVersion.cjs

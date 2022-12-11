@@ -3,6 +3,8 @@ import './styles.css';
 import { CanvasInfo, createCanvas } from "./createCanvas";
 import { ILevel } from './interfaces/ILevel';
 import { LevelName, Levels } from './levels';
+import { Screen } from './settings';
+import AppSettings from './app.json';
 
 class Game {
   private static canvasInfo: CanvasInfo;
@@ -47,7 +49,11 @@ class Game {
     const fps = Math.round(1000 / deltaTime);
     context.font = '16px "Press Start 2P"';
     context.textBaseline = 'top';
+    context.textAlign = 'left';
     context.fillText(`${fps} FPS`, 5, 5);
+
+    context.textAlign = 'right';
+    context.fillText(`v${AppSettings.version}`, Screen.Width - 5, 5);
   };
 
   /**
