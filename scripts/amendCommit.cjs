@@ -5,7 +5,7 @@ var filePath = path.resolve(__dirname, '../src/app.json');
 
 exec('git diff --name-only', function(error, stdout) {
   var modifiedFiles = stdout.trim().split(/\r?\n/);
-  console.log(modifiedFiles);
+  console.log(modifiedFiles, filePath);
   if (modifiedFiles.includes(filePath)) {
     console.log('yes', `git add ${filePath}`);
     // amend last commit
