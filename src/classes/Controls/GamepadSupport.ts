@@ -7,9 +7,6 @@ export class GamepadSupport {
 
   private static gamepadHandler = (event: GamepadEvent, connecting: boolean) => {
     const gamepad = event.gamepad;
-    if (connecting === true) {
-      console.log(gamepad.mapping);
-    }
   
     if (connecting) {
       this.gamepadIndex = gamepad.index;
@@ -19,7 +16,6 @@ export class GamepadSupport {
   };
 
   static init = () => {
-    console.log(navigator.getGamepads());
     window.addEventListener("gamepadconnected", (e) => { this.gamepadHandler(e, true); }, false);
     window.addEventListener("gamepaddisconnected", (e) => { this.gamepadHandler(e, false); }, false);
   };
