@@ -14,9 +14,10 @@ const fitScreen = ({ canvas, context }: CanvasInfo) => {
     width: containerWidth,
     height: containerHeight,
   } = document.body.getBoundingClientRect();
-  if (containerWidth >= Screen.Width) {
+  if (containerWidth >= Screen.Width && containerHeight >= Screen.Height) {
     return;
   }
+
   const fitSize = getObjectFitSize({
     size: { x: Screen.Width, y: Screen.Height },
     containerSize: { x: containerWidth, y: containerHeight }
