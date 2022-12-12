@@ -75,7 +75,7 @@ export class Level implements ILevel {
     this.door.draw(context);
     this.player.draw(context);
     this.screenOpacityTransition.draw(context);
-    TouchControls.draw(context);
+    // TouchControls.draw(context);
   };
 
   /**

@@ -62,7 +62,7 @@ export class Player extends AnimatedSprite {
     this.velocity.x = 0;
     if (jump.pressed) {
       if (this.velocity.y === 0 && this.jumpReady) {
-        this.velocity.y = -0.4 * deltaTime;
+        this.velocity.y = -15;
         this.jumpReady = false;
       }
     }

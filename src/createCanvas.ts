@@ -10,15 +10,22 @@ export type CanvasInfo = {
  * Scales the canvas to fit the screen without any blurriness.
  */
 const fitScreen = ({ canvas, context }: CanvasInfo) => {
+  const {
+    width: containerWidth,
+    height: containerHeight,
+  } = document.body.getBoundingClientRect();
+  if (containerWidth >= Screen.Width) {
+    return;
+  }
   const fitSize = getObjectFitSize({
     size: { x: Screen.Width, y: Screen.Height },
-    containerSize: { x: document.body.clientWidth, y: document.body.clientHeight }
+    containerSize: { x: containerWidth, y: containerHeight }
   });
   canvas.width = fitSize.x;
   canvas.height = fitSize.y;
   const ratio = Math.min(
-    document.body.clientWidth / Screen.Width,
-    document.body.clientHeight / Screen.Height
+    containerWidth / Screen.Width,
+    containerHeight / Screen.Height
   );
   context.scale(ratio, ratio);
 };
