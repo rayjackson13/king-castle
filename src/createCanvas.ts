@@ -38,5 +38,6 @@ export const createCanvas = () => {
   canvas.height = Screen.Height;
   const canvasInfo =  { canvas, context };
   fitScreen(canvasInfo);
+  window.addEventListener('resize', () => fitScreen(canvasInfo));
   return canvasInfo;
 };
