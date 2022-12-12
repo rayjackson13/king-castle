@@ -5,6 +5,7 @@ import { ILevel } from './interfaces/ILevel';
 import { LevelName, Levels } from './levels';
 import { Screen } from './settings';
 import AppSettings from './app.json';
+import { GamepadSupport } from './classes/Controls/GamepadSupport';
 
 class Game {
   private static canvasInfo: CanvasInfo;
@@ -17,6 +18,7 @@ class Game {
   static setup = () => {
     this.canvasInfo = createCanvas();
     this.createFullScreenButton();
+    GamepadSupport.init();
     const { context } = this.canvasInfo;
     context.imageSmoothingEnabled = false;
     this.level = new Levels[LevelName.Level1]({
@@ -38,6 +40,7 @@ class Game {
    * Updates game logic
    */
   private static update = (deltaTime: number) => {
+    GamepadSupport.update();
     this.level.update(deltaTime);
   };
 

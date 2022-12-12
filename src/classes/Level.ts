@@ -8,8 +8,9 @@ import { OpacityTransition } from '../classes/OpacityTransition';
 import { wait } from '../utils/wait';
 import type { ILevel, LevelParams } from "../interfaces/ILevel";
 import { LevelName } from "../levels";
-import { Controls } from "./Contols";
+import { KeyboardSupport } from "./Controls/KeyboardSupport";
 import { CanvasInfo } from '../createCanvas';
+import { Controls } from './Controls/index';
 
 export class Level implements ILevel {
   player: Player;
@@ -42,7 +43,7 @@ export class Level implements ILevel {
   };
 
   resetElements = () => {
-    Controls.init();
+    KeyboardSupport.init();
     TouchControls.init(this.canvasInfo);
 
     this.bgOpacityTransition = new OpacityTransition();
@@ -60,6 +61,7 @@ export class Level implements ILevel {
    * Updates game logic
    */
   update = (deltaTime: number) => {
+    Controls.update();
     this.bgOpacityTransition.update(deltaTime);
     this.player.update(deltaTime);
     this.door.updateLogic(this.player.hitbox);

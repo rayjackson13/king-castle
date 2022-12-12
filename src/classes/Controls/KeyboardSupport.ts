@@ -1,46 +1,38 @@
-export class Controls {
-  static keys = {
-    jump: {
-      pressed: false,
-    },
-    left: {
-      pressed: false,
-    },
-    right: {
-      pressed: false,
-    }
-  };
+export class KeyboardSupport {
+  static isLeftPressed = false;
+  static isRightPressed = false;
+  static isJumpPressed = false;
 
   static init = () => {
     window.addEventListener('keydown', (event) => {
       if (event.key === ' ') {
-        this.keys.jump.pressed = true;
+        this.isJumpPressed = true;
         return;
       }
 
       if (event.key === 'a') {
-        this.keys.left.pressed = true;
+        this.isLeftPressed = true;
         return;
       }
 
       if (event.key === 'd') {
-        this.keys.right.pressed = true;
+        this.isRightPressed = true;
         return;
       }
     });
 
     window.addEventListener('keyup', (event) => {
       if (event.key === ' ') {
-        this.keys.jump.pressed = false;
+        this.isJumpPressed = false;
         return;
       }
 
       if (event.key === 'a') {
-        this.keys.left.pressed = false;
+        this.isLeftPressed = false;
       }
 
       if (event.key === 'd') {
-        this.keys.right.pressed = false;
+        this.isRightPressed = false;
       }
     });
   };

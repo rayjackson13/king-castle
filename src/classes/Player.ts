@@ -2,11 +2,11 @@
 import { Vector2 } from "./Vector2";
 
 import { Screen } from "../settings";
-import { Controls } from "./Contols";
 import { CollisionSystem } from "./CollisionSystem";
 import { AnimatedSprite, AnimatedSpriteParams } from "./AnimatedSprite";
 import { PlayerAnimationTitle } from "../data/playerAnimations";
 import { CollisionBlock } from "./CollisionBlock";
+import { Controls } from "./Controls/index";
 
 type PlayerParams = AnimatedSpriteParams & {
   size: Vector2;
@@ -58,27 +58,26 @@ export class Player extends AnimatedSprite {
       return;
     }
 
-    const { jump, left, right } = Controls.keys;
     this.velocity.x = 0;
-    if (jump.pressed) {
+    if (Controls.isJumpPressed) {
       if (this.velocity.y === 0 && this.jumpReady) {
         this.velocity.y = -15;
         this.jumpReady = false;
       }
     }
 
-    if (!jump.pressed && this.velocity.y === 0 && !this.jumpReady) {
+    if (!Controls.isJumpPressed && this.velocity.y === 0 && !this.jumpReady) {
       this.jumpReady = true;
     }
 
-    if (left.pressed) {
+    if (Controls.isLeftPressed) {
       this.velocity.x = -this.speed * deltaTime;
       this.lastDirection = -1;
       this.switchSprite(PlayerAnimationTitle.RunLeft);
       return;
     }
 
-    if (right.pressed) {
+    if (Controls.isRightPressed) {
       this.velocity.x = this.speed * deltaTime;
       this.lastDirection = 1;
       this.switchSprite(PlayerAnimationTitle.RunRight);
