@@ -89,8 +89,13 @@ class Game {
   };
 
   static createFullScreenButton = () => {
+    const { canvas } = this.canvasInfo;
+    canvas.requestFullscreen = undefined;
+    if (!canvas.requestFullscreen) return;
+
     const button = document.createElement('button');
     button.textContent = 'Open full screen';
+    button.style.marginTop = '40px';
     button.onclick = this.openFullScreen;
     document.body.appendChild(button);
   };

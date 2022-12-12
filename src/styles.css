@@ -16,10 +16,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-canvas {
-  margin-bottom: 40px;
-}
-
 button {
   font-family: "Press Start 2P", monospace;
   border: 5px solid var(--active);
