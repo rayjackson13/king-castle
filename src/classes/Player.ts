@@ -53,31 +53,32 @@ export class Player extends AnimatedSprite {
   };
 
   handleControls = (deltaTime: number) => {
+    const { jump, left, right } = Controls.buttons;
     if (!this.isControllable) {
       this.velocity.x = 0;
       return;
     }
 
     this.velocity.x = 0;
-    if (Controls.isJumpPressed) {
+    if (jump.hold) {
       if (this.velocity.y === 0 && this.jumpReady) {
         this.velocity.y = -15;
         this.jumpReady = false;
       }
     }
 
-    if (!Controls.isJumpPressed && this.velocity.y === 0 && !this.jumpReady) {
+    if (!jump.hold && this.velocity.y === 0 && !this.jumpReady) {
       this.jumpReady = true;
     }
 
-    if (Controls.isLeftPressed) {
+    if (left.hold) {
       this.velocity.x = -this.speed * deltaTime;
       this.lastDirection = -1;
       this.switchSprite(PlayerAnimationTitle.RunLeft);
       return;
     }
 
-    if (Controls.isRightPressed) {
+    if (right.hold) {
       this.velocity.x = this.speed * deltaTime;
       this.lastDirection = 1;
       this.switchSprite(PlayerAnimationTitle.RunRight);

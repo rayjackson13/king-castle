@@ -7,6 +7,8 @@ export type LevelParams = {
 }
 
 export interface ILevel {
+  name: LevelName;
+
   reset(): void;
   resetElements(): void;
   update(deltaTime: number): void;

@@ -1,10 +1,19 @@
 import { GamepadSupport } from "./GamepadSupport";
 import { KeyboardSupport } from "./KeyboardSupport";
 
+import { Button, buttonDefaults } from "./button";
+
 export class Controls {
-  static isLeftPressed = false;
-  static isRightPressed = false;
-  static isJumpPressed = false;
+  static isControllerConnected = false;
+  static buttons: { [x: string]: Button } = {
+    left: { ...buttonDefaults },
+    right: { ...buttonDefaults },
+    up: { ...buttonDefaults },
+    down: { ...buttonDefaults },
+    jump: { ...buttonDefaults },
+    enter: { ...buttonDefaults },
+    menu: { ...buttonDefaults },
+  };
 
   static init() {
     KeyboardSupport.init();
@@ -12,8 +21,17 @@ export class Controls {
   }
 
   static update() {
-    this.isJumpPressed = KeyboardSupport.isJumpPressed || GamepadSupport.isJumpPressed;
-    this.isLeftPressed = KeyboardSupport.isLeftPressed || GamepadSupport.isLeftPressed;
-    this.isRightPressed = KeyboardSupport.isRightPressed || GamepadSupport.isRightPressed;
+    GamepadSupport.update();
+    KeyboardSupport.update();
+
+    this.isControllerConnected = GamepadSupport.isControllerConnected;
+
+    const { keys } = KeyboardSupport;
+    const { buttons } = GamepadSupport;
+
+    Object.keys(this.buttons).forEach(name => {
+      this.buttons[name].press = keys[name].press || buttons[name].press;
+      this.buttons[name].hold = keys[name].hold || buttons[name].hold;
+    });
   }
 }
