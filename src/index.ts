@@ -94,9 +94,17 @@ class Game {
 
   static openFullScreen = () => {
     const { canvas } = this.canvasInfo;
-    if (!canvas.requestFullscreen) return;
+    if (canvas.requestFullscreen) {
+      canvas.requestFullscreen();
+      return;
+    }
 
-    canvas.requestFullscreen();
+    /* eslint-disable @typescript-eslint/ban-ts-comment */
+    // @ts-ignore
+    if (canvas.webkitRequestFullscreen) {
+      // @ts-ignore
+      canvas.webkitRequestFullscreen();
+    }
   };
 }
 
