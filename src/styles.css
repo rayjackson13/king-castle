@@ -1,3 +1,8 @@
+:root {
+  --bg: black;
+  --active: #fbca97;
+}
+
 body {
   margin: 0;
   overflow: hidden;
@@ -6,7 +11,30 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: black;
+  background-color: var(--bg);
+  font-family: "Press Start 2P", monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+canvas {
+  margin-bottom: 40px;
+}
+
+button {
+  font-family: "Press Start 2P", monospace;
+  border: 5px solid var(--active);
+  background-color: var(--bg);
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  transition: all .25s;
+  text-transform: uppercase;
+}
+
+button:hover {
+  border-color: var(--bg);
+  background-color: var(--active);
+  color: var(--bg);
 }
 
 *, *::after, *::before {

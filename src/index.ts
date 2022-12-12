@@ -16,6 +16,7 @@ class Game {
    */
   static setup = () => {
     this.canvasInfo = createCanvas();
+    this.createFullScreenButton();
     const { context } = this.canvasInfo;
     context.imageSmoothingEnabled = false;
     this.level = new Levels[LevelName.Level1]({
@@ -83,7 +84,25 @@ class Game {
 
     window.requestAnimationFrame(this.loop);
   };
+
+  static createFullScreenButton = () => {
+    const button = document.createElement('button');
+    button.textContent = 'Open full screen';
+    button.onclick = this.openFullScreen;
+    document.body.appendChild(button);
+  };
+
+  static openFullScreen = () => {
+    const { canvas } = this.canvasInfo;
+    if (!canvas.requestFullscreen) return;
+
+    canvas.requestFullscreen();
+  };
 }
 
 Game.setup();
 window.requestAnimationFrame(Game.loop);
+
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
+window.Game = Game;
