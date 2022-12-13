@@ -7,7 +7,6 @@ import { Screen } from './settings';
 import AppSettings from './app.json';
 import { Title } from './levels/Title';
 import { Controls } from './classes/Controls';
-import { Credits } from './levels/Credits';
 
 export class Game {
   private static canvasInfo: CanvasInfo;
@@ -22,7 +21,7 @@ export class Game {
     Controls.init();
     const { context } = this.canvasInfo;
     context.imageSmoothingEnabled = false;
-    this.level = new Credits({
+    this.level = new Title({
       loadLevel: this.loadNextLevel,
       canvasInfo: this.canvasInfo,
     });
