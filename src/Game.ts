@@ -5,7 +5,9 @@ import { ILevel } from './interfaces/ILevel';
 import { LevelName, Levels } from './levels';
 import { Screen } from './settings';
 import AppSettings from './app.json';
-import { GamepadSupport } from './classes/Controls/GamepadSupport';
+import { Title } from './levels/Title';
+import { Controls } from './classes/Controls';
+import { Credits } from './levels/Credits';
 
 export class Game {
   private static canvasInfo: CanvasInfo;
@@ -17,11 +19,10 @@ export class Game {
    */
   static setup = () => {
     this.canvasInfo = createCanvas();
-    this.createFullScreenButton();
-    GamepadSupport.init();
+    Controls.init();
     const { context } = this.canvasInfo;
     context.imageSmoothingEnabled = false;
-    this.level = new Levels[LevelName.Level1]({
+    this.level = new Credits({
       loadLevel: this.loadNextLevel,
       canvasInfo: this.canvasInfo,
     });
@@ -41,8 +42,12 @@ export class Game {
    * Updates game logic
    */
   private static update = (deltaTime: number) => {
-    GamepadSupport.update();
+    Controls.update();
     this.level.update(deltaTime);
+
+    if (Controls.buttons.menu.press && this.level.name !== LevelName.Title) {
+      this.loadNextLevel(LevelName.Title);
+    }
   };
 
   /**
@@ -87,31 +92,5 @@ export class Game {
     this.lastRender = timestamp;
 
     window.requestAnimationFrame(this.loop);
-  };
-
-  static createFullScreenButton = () => {
-    const { canvas } = this.canvasInfo;
-    if (!canvas.requestFullscreen) return;
-
-    const button = document.createElement('button');
-    button.textContent = 'Open full screen';
-    button.style.marginTop = '40px';
-    button.onclick = this.openFullScreen;
-    document.body.appendChild(button);
-  };
-
-  static openFullScreen = () => {
-    const { canvas } = this.canvasInfo;
-    if (canvas.requestFullscreen) {
-      canvas.requestFullscreen();
-      return;
-    }
-
-    /* eslint-disable @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
-    if (canvas.webkitRequestFullscreen) {
-      // @ts-ignore
-      canvas.webkitRequestFullscreen();
-    }
   };
 }

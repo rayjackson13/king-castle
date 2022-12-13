@@ -10,6 +10,7 @@ import { CollisionSystem } from "../classes/CollisionSystem";
 import { Collisions } from "../data/collisions";
 
 export class Level1 extends Level {
+  name = LevelName.Level1;
   nextLevel = LevelName.Level2;
 
   reset = () => {
@@ -31,5 +32,10 @@ export class Level1 extends Level {
       position: { x: 12 * 64, y: 270 },
       onLevelPassed: this.onComplete,
     });
+
+    this.player.isControllable = false;
+    setTimeout(() => {
+      this.player.isControllable = true;
+    }, 500);
   };
 }

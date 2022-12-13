@@ -10,6 +10,7 @@ import { CollisionSystem } from "../classes/CollisionSystem";
 import { Collisions } from "../data/collisions";
 
 export class Level3 extends Level {
+  name = LevelName.Level3;
   nextLevel = LevelName.Level1;
 
   reset = () => {
