@@ -47,6 +47,11 @@ export class KeyboardSupport {
         this.keys.menu.hold = true;
         return;
       }
+
+      if (event.key === 'Tab') {
+        this.keys.menu.hold = true;
+        return;
+      }
     });
 
     window.addEventListener('keyup', (event) => {
@@ -81,6 +86,11 @@ export class KeyboardSupport {
       }
 
       if (event.key === 'Escape') {
+        this.keys.menu.hold = false;
+        return;
+      }
+
+      if (event.key === 'Tab') {
         this.keys.menu.hold = false;
         return;
       }

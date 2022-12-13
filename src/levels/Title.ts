@@ -23,7 +23,6 @@ export class Title implements ILevel {
   elapsedFrames = 0;
   pointerOffset = 0;
   maxPointerOffset = 8;
-  // isSwitchReady = true;
   isFullscreen = false;
   titleOptions: Option[] = [];
   selectedIndex = 0;
@@ -56,7 +55,9 @@ export class Title implements ILevel {
       },
       {
         title: 'Credits',
-        onPress: () => {},
+        onPress: () => {
+          this.loadLevel(LevelName.Credits);
+        },
       }
     ];
   };
